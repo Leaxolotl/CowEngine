@@ -1,0 +1,18 @@
+# = à faire
+
+
+backgroud = ....
+textbox = ...
+
+
+set_background('chambre.jpg')
+
+set_music('start_song.mp3')
+
+
+new_character('rin_smile.png')
+# Lemon = new_character(...)
+
+say('Coucou toi ^^ Je suis lemon !!')
+# Lemon.say(...)
+
