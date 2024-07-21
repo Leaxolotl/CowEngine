@@ -9,5 +9,8 @@ init_scene('chambre.jpg', 'start_song.mp3')
 new_character('rin_smile.png')
 say('Coucou toi ^^ Je suis lemon !!')
 
+#say('Tu vas bien ?')
+
+
 # lemon = new_char...
 # lemon.say('...')
