@@ -1,18 +1,13 @@
-# = à faire
 
 
-backgroud = ....
-textbox = ...
+# init of the current scene, you MUST specify an image as the backgroud, and
 
+# premiere_scene = init_scene(background='chambre.jpg', music='start_song.mp3')
 
-set_background('chambre.jpg')
-
-set_music('start_song.mp3')
-
+init_scene('chambre.jpg', 'start_song.mp3')
 
 new_character('rin_smile.png')
-# Lemon = new_character(...)
-
 say('Coucou toi ^^ Je suis lemon !!')
-# Lemon.say(...)
 
+# lemon = new_char...
+# lemon.say('...')
