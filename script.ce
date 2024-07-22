@@ -7,9 +7,14 @@
 init_scene('chambre.jpg', 'start_song.mp3')
 
 new_character('rin_smile.png')
-say('Coucou toi ^^ Je suis lemon !!')
 
-#say('Tu vas bien ?')
+say('Coucou toi ^^ Je suis lemon !!')
+say('Tu vas bien ?')
+say('Tu vas où ?')
+say('vaaaach')
+say('Je peux venir avec toi ?')
+say('Tu m'aimes ?')
+
 
 
 # lemon = new_char...

@@ -1,11 +1,14 @@
 import pygame
 from pygame.locals import *
 from pygame import mixer
-import time
+import codecs
 
 
-main_script_file = open('script.ce', 'r') # open main script file
+main_script_file = codecs.open('script.ce', 'r', 'UTF-8') # open main script file
 main_script = main_script_file.read()
+
+dialogs = []
+dialogs_index = 1
 
 
 pygame.init()
@@ -60,8 +63,18 @@ def new_character(path):
     render_namebox()
 
 
+def render_name(name):
+    font = pygame.font.SysFont('DejaVu Sans', 30)
+    name_rendered = font.render(name, True, (224, 125, 194, 253))
+
+    name_x = namebox_x + (168 - name_rendered.get_width()) // 2
+    name_y = namebox_y + (39 - name_rendered.get_height()) // 2
+
+    fenetre.blit(name_rendered, (name_x, name_y))
+
+
 def say(text):
-    font = pygame.font.SysFont('DejaVu Sans', 25)
+    font = pygame.font.SysFont('DejaVu Sans', 30)
     rendered_text = font.render(text, True, (255, 255, 255))
 
     text_x = textbox_x + 20
@@ -84,25 +97,40 @@ for ligne in main_script.splitlines():
         path = ligne.replace("new_character('", "").replace("')", "")
         new_character(path)
         
-
     elif ligne.startswith("say('") and ligne.endswith("')"):
         script = ligne.replace("say('", "").replace("')", "")
-        say(script)
+        print(script)
+        dialogs.append(script)
 
 
+render_name("lemon")
 
-""" TODO: create 'render_name()' function to handle the following stuff"""
+continuer = True
 
-name = 'Lemon'
+while continuer:
+    pygame.display.update()
 
-font = pygame.font.SysFont('DejaVu Sans', 25)
-name_rendered = font.render(name, True, (224, 125, 194, 253))
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            continuer = False
 
-name_x = namebox_x + (168 - name_rendered.get_width()) // 2
-name_y = namebox_y + (39 - name_rendered.get_height()) // 2
+        elif event.type == MOUSEBUTTONDOWN:
+            mouse_x, mouse_y = event.pos
 
-fenetre.blit(name_rendered, (name_x, name_y))
+            
+            if textbox_x <= mouse_x <= textbox_x + 816 and textbox_y <= mouse_y <= textbox_y + 146:
 
+                render_textbox()
+                render_namebox()
+                render_name("lemon")
+                say(dialogs[dialogs_index])
+
+                if dialogs_index + 1 < len(dialogs):
+                    dialogs_index += 1
+                    
+                # TODO : Faire en sorte que si on clique, mais que le texte est en train de s'écrire, on affiche tout d'un coup, puis on reclique pour passer au texte suivant
+
+pygame.quit()
 
 
 """
@@ -123,23 +151,3 @@ loop:
         index += 1
         start_time = current_time
 """
-
-
-continuer = True
-
-while continuer:
-    pygame.display.update()
-
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            continuer = False
-
-        elif event.type == MOUSEBUTTONDOWN:
-            mouse_x, mouse_y = event.pos
-
-            if textbox_x <= mouse_x <= textbox_x + 816 and textbox_y <= mouse_y <= textbox_y + 146:
-                print("Text box cliqué!")
-                # Faire en sorte que si on clique, mais que le texte est en train de s'écrire, on affiche tout d'un coup
-                # Puis on reclique pour passer au texte suivant
-
-pygame.quit()
