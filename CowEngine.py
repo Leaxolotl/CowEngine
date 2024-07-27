@@ -64,7 +64,7 @@ def new_character(path):
 
 
 def render_name(name):
-    font = pygame.font.SysFont('DejaVu Sans', 30)
+    font = pygame.font.SysFont('DejaVu Sans', 25)
     name_rendered = font.render(name, True, (224, 125, 194, 253))
 
     name_x = namebox_x + (168 - name_rendered.get_width()) // 2
@@ -103,7 +103,7 @@ for ligne in main_script.splitlines():
         dialogs.append(script)
 
 
-render_name("lemon")
+render_name("Lemon")
 
 continuer = True
 
@@ -122,7 +122,7 @@ while continuer:
 
                 render_textbox()
                 render_namebox()
-                render_name("lemon")
+                render_name("Lemon")
                 say(dialogs[dialogs_index])
 
                 if dialogs_index + 1 < len(dialogs):
